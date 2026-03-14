@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react';
+import './index.css';
+
 
 function App() {
     const [meetingCode, setMeetingCode] = useState('');
@@ -6,18 +8,40 @@ function App() {
     const [copyStatus, setCopyStatus] = useState('MeetingLink');
     const [isFocused, setIsFocused] = useState(false);
 
-    const handleNewMeeting = () => {
-        // Generate a secure mock meeting ID
-        const chars = 'abcdefghijklmnopqrstuvwxyz';
-        const segment = (len) => Array.from({ length: len }).map(() => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
-        const meetingId = `${segment(3)}-${segment(4)}-${segment(3)}`;
+    // const handleNewMeeting = () => {
+    //     // Generate a secure mock meeting ID
+    //     const chars = 'abcdefghijklmnopqrstuvwxyz';
+    //     const segment = (len) => Array.from({ length: len }).map(() => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
+    //     const meetingId = `${segment(3)}-${segment(4)}-${segment(3)}`;
 
-        // Construct frontend URL (in real app, could point to /room/:id)
+    //     // Construct frontend URL (in real app, could point to /room/:id)
+    //     const baseUrl = window.location.origin;
+    //     const link = `${baseUrl}/${meetingId}`;
+
+    //     setGeneratedLink(link);
+    //     setCopyStatus(link);
+    // };
+
+    const handleNewMeeting = async () => {
+        try {
+
+        const res = await fetch('http://localhost:5001/api/meeting/create',{
+            method: 'POST',
+        });
+        const data = await res.json();
+
+        const MeetingId = data.meetingId;
         const baseUrl = window.location.origin;
-        const link = `${baseUrl}/${meetingId}`;
-
+        const link = `${baseUrl}/room/${MeetingId}`;
+        
         setGeneratedLink(link);
         setCopyStatus(link);
+
+        }
+        catch(err){
+            console.error('Error creating meeting:', err);
+            alert('Failed to create meeting. Please try again.');
+        }
     };
 
     const handleCopyLink = () => {
