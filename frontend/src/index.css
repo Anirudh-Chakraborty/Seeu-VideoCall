@@ -83,7 +83,8 @@ body {
     cursor: default;
 }
 
-.input-group:focus-within {
+.input-group:focus-within,
+.input-group.focused {
     border-color: #ffffff;
     box-shadow: 0 0 0 1px #ffffff;
 }
