@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import './index.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Room from './room';
 
-
-function App() {
+function AppContent() {
     const [meetingCode, setMeetingCode] = useState('');
     const [generatedLink, setGeneratedLink] = useState('');
     const [copyStatus, setCopyStatus] = useState('MeetingLink');
@@ -61,8 +62,8 @@ function App() {
 
     const handleJoin = () => {
         if (meetingCode.trim()) {
-            alert(`Joining meeting with code: ${meetingCode}`);
-            // Typically: window.location.href = `/${meetingCode}`;
+            //alert(`Joining meeting with code: ${meetingCode}`)
+            window.location.href = `/room/${meetingCode}`;
         } else {
             alert('Please enter a valid meeting code or link.');
         }
@@ -107,6 +108,17 @@ function App() {
                 </button>
             </div>
         </main>
+    );
+}
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<AppContent />} />
+                <Route path="/room/:id" element={<Room />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
