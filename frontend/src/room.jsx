@@ -4,19 +4,29 @@ import { useParams } from "react-router-dom";
 function Room() {
 
   const { id } = useParams();
-  const jitsiContainerRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
 
     const loadJitsi = () => {
 
-      const domain = "meet.jit.si";
+      const domain = "8x8.vc";
 
       const options = {
-        roomName: id,
+        roomName: `${process.env.APPID}/${id}`,
         width: "100%",
         height: "100%",
-        parentNode: jitsiContainerRef.current,
+        parentNode: containerRef.current,
+
+        configOverwrite: {
+            prejoinPageEnabled: false,
+            startWithAudioMuted: true,
+            startWithVideoMuted: true,
+        },
+
+        interfaceConfigOverwrite: {
+        SHOW_JITSI_WATERMARK: false
+    }
       };
 
       new window.JitsiMeetExternalAPI(domain, options);
@@ -39,7 +49,7 @@ function Room() {
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
-      <div ref={jitsiContainerRef} style={{ height: "100%" }} />
+      <div ref={containerRef} style={{ height: "100%" }} />
     </div>
   );
 }
