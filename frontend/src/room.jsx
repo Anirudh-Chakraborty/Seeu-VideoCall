@@ -13,7 +13,7 @@ function Room() {
       const domain = "8x8.vc";
 
       const options = {
-        roomName: `${process.env.APPID}/${id}`,
+        roomName: `${import.meta.env.VITE_APPID}/${id}`,
         width: "100%",
         height: "100%",
         parentNode: containerRef.current,
