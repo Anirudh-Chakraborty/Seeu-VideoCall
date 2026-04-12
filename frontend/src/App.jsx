@@ -26,7 +26,8 @@ function AppContent() {
     const handleNewMeeting = async () => {
         try {
 
-        const res = await fetch('http://localhost:5001/api/meeting/create',{
+        const API_BASE_URL = import.meta.env.MODE === 'production' ? 'https://seeu-videocall.onrender.com' : 'http://localhost:5001';
+        const res = await fetch(`${API_BASE_URL}/api/meeting/create`,{
             method: 'POST',
         });
         const data = await res.json();
