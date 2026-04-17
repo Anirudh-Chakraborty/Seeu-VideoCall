@@ -14,8 +14,11 @@
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
     "express": "^5.2.1",
-    "uuid": "^13.0.0"
+    "razorpay": "^2.9.2",
+    "uuid": "^13.0.0",
+    "zego-server-assistant": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
