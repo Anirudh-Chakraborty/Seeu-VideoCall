@@ -1,0 +1,58 @@
+.paywall-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+  backdrop-filter: blur(8px);
+}
+
+.paywall-content {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.time-up-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.paywall-content h2 {
+  color: #111827;
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.paywall-content p {
+  color: #4b5563;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.extend-button {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.extend-button:hover {
+  background-color: #d97706;
+}
